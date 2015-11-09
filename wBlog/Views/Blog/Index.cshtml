@@ -1,0 +1,31 @@
+﻿@model IEnumerable<wBlog.ViewModel.PostModel>
+<div>
+    <h2>View All Posts</h2>
+    
+    @using (Html.BeginForm("Index", "Blog", FormMethod.Get))
+    {
+        <dl class="dl-horizontal">
+            @foreach (var post in Model)
+            {
+                <div class="container">
+                    <h1>@Html.DisplayFor(x => post.Title)</h1>
+
+                    <p>@Html.DisplayFor(x => post.Body)</p>
+
+                    
+
+                    @foreach (var comment in post.Tags)
+                    {
+                        <p>@comment.ToString()</p>
+                    }
+                    <p></p>
+                </div>
+                
+            }
+
+
+        </dl>
+    }
+    
+</div>
+
