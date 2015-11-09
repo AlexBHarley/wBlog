@@ -11,7 +11,7 @@ namespace wBlog.ViewModel
         public string Title { get; set; }
         public string Body { get; set; }
         public DateTime DatePosted { get; set; }
-        public List<Tag> Tags { get; set; }
+        public ICollection<Tag> Tags { get; set; }
     }
     
 

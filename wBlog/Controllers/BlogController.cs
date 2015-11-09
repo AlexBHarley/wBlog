@@ -31,8 +31,9 @@ namespace wBlog.Controllers
                 });
             }
 
-            return View(justCreate.OrderByDescending(x => x.DateTime).ToList());
+            return View(postList);
         }
+        
         
 
         public ActionResult Create()
@@ -51,38 +52,35 @@ namespace wBlog.Controllers
                     Body = input.Body,
                     DateTime = DateTime.Now
                 };
-
-                db.Posts.Add(post);
-                db.SaveChanges();
-                int idForTags = post.PostID;
+                post.Tags.Clear();
 
                 foreach (string word in input.Tags.Split(' '))
                 {
                     Tag tag = new Tag
                     {
-                        PostID = idForTags,
-                        DateTime = DateTime.Now,
                         Name = word
                     };
-                    db.Tags.Add(tag);
+                    post.Tags.Add(tag);
                 }
+
+                db.Posts.Add(post);
                 db.SaveChanges();
                 
-                return RedirectToAction("Details", new { id = idForTags });
+                
+                return RedirectToAction("Details", new { id = post.Id });
             }
             return RedirectToAction("Index");
         }
 
         public ActionResult Details(int id)
         {
-            var post = db.Posts.Where(x => x.PostID == id).First();
-            var tags = db.Tags.Where(t => t.PostID == id).ToList();
+            var post = db.Posts.Where(x => x.Id == id).First();
             PostModel model = new PostModel
             {
                 Body = post.Body,
                 DatePosted = post.DateTime,
                 Title = post.Title,
-                Tags = tags
+                Tags = post.Tags
             };
             
             return View(model);
