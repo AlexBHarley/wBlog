@@ -130,6 +130,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="DAL\SessionContext.cs" />
+    <Compile Include="DAL\UserContext.cs" />
+    <Compile Include="DAL\UserRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -138,12 +142,19 @@
     <Compile Include="Migrations\201511092215182_Initial.Designer.cs">
       <DependentUpon>201511092215182_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511150431146_UserTable.cs" />
+    <Compile Include="Migrations\201511150431146_UserTable.Designer.cs">
+      <DependentUpon>201511150431146_UserTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BlogInputModel.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\PostModel.cs" />
+    <Compile Include="ViewModel\RegisterViewModel.cs" />
     <Compile Include="ViewModel\SidebarViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +199,8 @@
     <Content Include="Views\Blog\Details.cshtml" />
     <Content Include="Views\Blog\Search.cshtml" />
     <Content Include="Views\Blog\Sidebar.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -204,6 +217,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201511092215182_Initial.resx">
       <DependentUpon>201511092215182_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511150431146_UserTable.resx">
+      <DependentUpon>201511150431146_UserTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
