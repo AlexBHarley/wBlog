@@ -1,0 +1,30 @@
+﻿@using System.Diagnostics
+@model IEnumerable<wBlog.Models.Post>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+@using (Html.BeginForm("Search", "Blog", FormMethod.Get))
+{
+    
+
+    <div class="post-preview">
+        <a href="/home/post/9-getting-started-with-windows-phone-8">
+            <h2 class="post-title">
+                Getting Started with Windows Phone 8
+            </h2>
+            <h3 class="post-subtitle">
+                Windows Phone 8: Creating Your First Application
+            </h3>
+        </a>
+        <p class="post-meta">
+            Posted by <a href="#">Edin Mahmutović</a> on Wednesday, October 28, 2015
+            <br />
+            <label class="label label-primary">Windows Phone</label>
+        </p>
+    </div>
+}
+
+

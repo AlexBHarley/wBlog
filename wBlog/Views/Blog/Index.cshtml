@@ -1,31 +1,43 @@
-﻿@model IEnumerable<wBlog.ViewModel.PostModel>
-<div>
+﻿@using wBlog.Models
+@model List<wBlog.ViewModel.PostModel>
     <h2>View All Posts</h2>
-    
+
     @using (Html.BeginForm("Index", "Blog", FormMethod.Get))
     {
-        <dl class="dl-horizontal">
+        <div class="col-lg-8">
             @foreach (var post in Model)
             {
-                <div class="container">
-                    <h1>@Html.DisplayFor(x => post.Title)</h1>
-
+                <div class="blog-post">
+                    <h2 class="blog-post-title">@Html.DisplayFor(x => post.Title)</h2>
+                    <p class="blog-post-meta">@Html.DisplayFor(x => post.DatePosted) <a href="#">Jacob</a>
+                    </p>
                     <p>@Html.DisplayFor(x => post.Body)</p>
-
-                    
-
-                    @foreach (var comment in post.Tags)
-                    {
-                        <p>@comment.Name.ToString()</p>
-                    }
-                    <p></p>
                 </div>
                 
+                <div class="navbar navbar-default">
+                    <ul class="nav navbar-nav">
+                        @foreach (var tag in post.Tags)
+                    {
+                            <li>
+                                @Html.ActionLink(
+                            linkText: tag.Name,
+                            actionName: "Search",
+                            controllerName: "Blog",
+                            routeValues: new { id = tag.Id },
+                            htmlAttributes: null)
+                            </li>
+                        }
+                    </ul>
+                </div>
             }
-
-
-        </dl>
+        </div>
     }
-    
-</div>
 
+    <div class="col-md-4">
+
+        @{
+            Html.RenderAction("Sidebar", "Blog");
+        } 
+
+    </div>
+            
